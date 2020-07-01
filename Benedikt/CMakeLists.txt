@@ -1,0 +1,1 @@
+add_latex_document(Bene_Energietechnik.tex FORCE_PDF IMAGE_DIRS img)
