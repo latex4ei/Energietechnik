@@ -1,8 +1,6 @@
 % .:: Laden der LaTeX4EI Formelsammlungsvorlage
 \documentclass[european]{latex4ei_sheet}
 
-\title{Elektrische \\ Energietechnik}
-
 \RequirePackage{latex4ei/latex4ei_unicode}
 
 % DOCUMENT_BEGIN ===============================================================
@@ -21,84 +19,91 @@
 
 	\section{Physikalische Grundlagen}
 	$P = F \cdot v = M \cdot \omega$ \\
-	Kreisfrequenz: $\omega := \frac{\diff \phi}{\diff t} = 2 \pi n = 2 \pi f = \frac{v}{r}$ \\
+	$\omega := \frac{\diff \phi}{\diff t} = 2 \pi n = 2 \pi f = \frac{v}{r}$ \\
+
+
 	\section{Lastganglinien}
 	$T_n$: Nennbetriebsdauer\\
 	$T_a$ Ausnutzungsadauer\\
 	$T_{ben}$: Benutzungsdauer\\
-	$P_{max}$: Höchstalast\\
+	$P_{max}$: Höchstlast\\
 	$W = \int_0^{T_n} P(t) \diff t = P_{mittel} T_n = P_n T_a = P_{max} T_{ben}$\\
+	
 	\section{Wechsel-/Drehstromsystem}
-		\subsection{Wechselstromsystem}
-		Phasenwinkel: $\varphi = \varphi_u - \varphi_i$ \qquad Scheitelwert: $\hat x$\\
-		Effektivwert: $X=\frac{\hat x}{\sqrt{2}} = \sqrt{\frac{1}{T} \int_{t_0}^{t_0 + T} x^2(\tau) \diff \tau}$\\
-		Zeitsignal: $x(t) = \hat x \cos(\omega t + \varphi_x) = X \sqrt{2} \cos(\omega t + \varphi_x)$\\
-		Komplexes Zeitsignal: $\vec x(t) = \hat x \exp\left[\j (\omega t + \varphi_x)\right]$\\ 
-		mit \qquad \qquad $x(t) = \Re{\vec x(t)}$
 
-		Effektiver Zeiger: $\vec X = X \exp(\j \varphi_x) =\frac{1}{\sqrt{2} \exp(\j \omega t)}\vec x(t)$\\
+
+		\subsection{Wechselstromsystem}
+		Phasenwinkel $\varphi = \varphi_u - \varphi_i$ \qquad Kreisfrequenz: $\omega = 2\pi f$\\
+		
+		
+		Physikalische Zeitsignale:\\
+		$u(t) = \hat u \cos(\omega t + \varphi_u) = U \sqrt{2} \cos(\omega t + \varphi_u)$\\
+		$i(t) = \hat i \cos(\omega t + \varphi_i) = I \sqrt{2} \cos(\omega t + \varphi_i)$\\
+		\\
+		Komplexes Zeitsignal(Drehzeiger): $\vec u(t) = \hat u \exp\big(\i (\omega t + \varphi_u)\big)$, 
+		$u(t) = \Re(\vec u(t))$\\
+		
+	
+		Scheitelwert $\hat u$, Effektivwert $U = \sqrt{\frac{1}{T} \int_{t_0}^{t_0 + T} u^2(\tau) \diff \tau}$,
+		bei Sinus $U = \frac{\hat u}{\sqrt{2}}$\\
+		Effektiver Zeiger: $\vec U = U \exp(\i \varphi_u)$\\
+		
+		$\vec U \cdot \sqrt{2} \exp(\i \omega t) = \vec u(t)$	
+	
+
+	
 		\subsection{Komplexe Leistung}
 		$P = \frac1T \int_0^{T} p(t) \diff t = \frac1T \int_0^{T} u(t) \cdot i(t) \diff t$\\
-		$p(t) = P + S \cdot \cos(2\omega t + \varphi_u + \varphi_i)$\\
-		\begin{symbolbox}
-			\begin{tabular}{lll}
-				Wirkleistung & $P = \Re{\vec S} = U I \cdot \cos(\varphi)$ & $\si{W}$\\
-				Blindleistung & $Q = \Im{\vec S} = U I \cdot \sin(\varphi)$ & $\si{Var}$\\
-				Scheinleistung & $S = \norm{\vec U \cdot \vec I^*} = \sqrt{P^2 + Q^2}$ & $\si{VA}$\\
-			\end{tabular}
-		\end{symbolbox}
-		Leistungsfaktor $\lambda = \frac{|P|}{S} = \cos(\varphi)$ \qquad
-		\includegraphics[scale=1]{./img/leistung.pdf}\\
+		\begin{tabular}{lll}
+		Wirkleistung & $P = \Re(\vec S) = U I \cdot \cos(\varphi)$ & [W] \\
+		Blindleistung & $Q = \Im(\vec S) = U I \cdot \sin(\varphi)$ & [Var]\\
+		Scheinleistung & $S = U \cdot I = \sqrt{P^2 + Q^2}$ & [VA]\\
+		\end{tabular}
+		\pbox{8.0cm}{
+		Scheinleistung: $\vec S = \vec U \cdot \vec I^*$ \\ $\norm{\vec S} = S = \sqrt{P^2 + Q^2}$\\ Leistungsfaktor $\lambda = \frac{|P|}{S} = \cos(\varphi)$ } \qquad
+		\pbox{4cm}{ \includegraphics{./img/leistung.pdf} }\\
 		
-		Scheinleistung schwingt mit doppelter Netzfrequenz!\\
-		Komplexe Wechselleistung: $\tilde {\vec S} = \vec U \cdot \vec I$\\
+		Scheinleistung schwingt mit doppelter Netzfrequenz!
+		$p(t) = P + S \cdot \cos(2\omega t + \varphi_u + \varphi_i)$\\
+		$\tilde {\vec S} = \vec U \cdot \vec I$\\
 
-		\begin{tablebox}{ll}
+		\begin{tabular}{ll}
 		Impedanz(Scheinwiderstand) & Admittanz(Scheinleitwert)\\
-		\mrule
-		$\vec Z = R + \j X = \exp(\j \varphi_Z)$ & $\vec Y = G + \j B = \exp(\j \varphi_Y)$\\
+		$\vec Z = R + \i X = \exp(\i \varphi_Z)$ & $\vec Y = G + \i B = \exp(\i \varphi_Y)$\\
 		$\underset{\text{Impedanz}}{Z(j\omega)} = \underset{\text{Resistanz}}{R(j\omega)} + \underset{\text{Reaktanz}}{jX(j\omega)}$ & 	$\underset{\text{Admittanz}}{Y(j\omega)} = \underset{\text{Konduktanz}}{G(j\omega)} + \underset{\text{Suszeptanz}}{jB(j\omega)}$\\
 		$\vec U = \vec Z \cdot I $ & $\vec I = \vec Y \cdot \vec U$\\
 
-		\end{tablebox}
+		\end{tabular}
 
 
 
 		\subsection{Drehstromsystem}
-		Drehoperator: $\vec a = \exp\bigl(\j \frac{2}{3} \pi \bigr)$ \qquad $\vec a^0 = \vec a^3 = 1$ \quad $\vec a^* = \vec a^2$\\
+		Drehoperator: $\vec a = \exp\bigl(\i \frac{2}{3} \pi \bigr)$ \qquad $\vec a^0 = \vec a^3 = 1$ \quad $\vec a^* = \vec a^2$\\
 		
 		% Zeigerdiagramm mit Drehoperatoren
 		
 		Effektive Leiter-Erdspannungen: $\vec U_1,\vec U_2,\vec U_3$\\
 		Effektive Außenleiterspannungen: $\vec U_{12},\vec U_{23},\vec U_{31}$\\
-		Netznennspannung: $U_n$\\
+		symmetrischer Betrieb:\\
+		$U = |U_1| = |U_2| = |U_3|$\\
+		Netznennspannung: $U_n = |U_{12}| = |U_{23}| = |U_{32}| = \sqrt{3} U$\\
+		Gesamte Leistung: $\vec S = \sqrt{3} \cdot \vec U_n \cdot \vec I^\star$\\
+		bei symmetrischem Betrieb: $\vec S = 3 \cdot \vec U \cdot \vec I$\\
+		bei unsymmetrischem Betrieb: 
+		\[\vec S = \vec U_1 \cdot \vec I_1^\star + \vec U_2 \cdot \vec I_2^\star + \vec U_3 \cdot \vec I_3^\star\]
 		
-		
-		\begin{tablebox}{lll}
-			symmetrisch & unsymmetrisch\\
-			$U = |U_1| = |U_2| = |U_3|$ & \\
-		 	$U_n = |U_{12}| = |U_{23}| = |U_{32}| = \sqrt{3} U$ & \\
-		 	$\vec S = 3 \cdot \vec U\vec I^*$ & $\vec S = \sum_{k=1}^3\vec U_k\vec I_k^\star$\\
-		\end{tablebox}
-		
-		Komplexe Wechselleistung: $\tilde{\vec S} = \vec U_1 \cdot \vec I_1 + \vec U_2 \cdot \vec I_2 + \vec U_3 \cdot \vec I_3$
-		Tatsächlicher Leistungsfluss: $p(t) = \operatorname{Re} \left\{ \vec S \right\} + \operatorname{Re} \left\{\tilde{\vec S} e^{j 2 \omega t} \right\}$
-	\subsection{Sternschaltung}
-	Falls symmetrisch gilt:\\
-	 $\vec I = \abs{\vec I_1} = \abs{\vec I_2} = \abs{\vec I_3}$, $\vec U = \abs{\vec U_1} = \abs{\vec U_2} = \abs{\vec U_3}$ und $I=\frac{U}{\abs Z}$
-	\subsection{Dreieckschaltung}
-	Eine symmetrische Dreiecksschaltung kann durch eine Sternschaltung mit $\vec Z_*=1/3 \cdot \vec Z_\Delta$ ersetzt werden.\\
-	Falls symmetrisch gilt:\\
-	$\vec I_\Delta = \abs{\vec I_{12}} = \abs{\vec I_{23}} = \abs{\vec I_{31}}$, $\vec U_\Delta = \abs{\vec U_{12}} = \abs{\vec U_{23}} = \abs{\vec U_{31}}$ und $I_\Delta=\frac{U_n}{\abs Z}$
-	\subsection{Impedanzmatrix}
-	\[\begin{pmatrix} \vec U_1 \\ \vec U_2 \\ \vec U_3 \end{pmatrix} = 
-		\begin{pmatrix} \vec A & \vec B & \vec B \\ \vec B & \vec A & \vec B \\ \vec B & \vec B & \vec A \end{pmatrix} 
-		\begin{pmatrix} \vec I_1 \\ \vec I_2 \\ \vec I_3 \end{pmatrix}\]
-		Eigenimpedanz: $\vec A$, Koppelimpedanz: $\vec B$\\
-		Betriebsimpedanz $\vec Z_b = \vec A - \vec B$
+		Komplexe Wechselleistung:
+		\[\tilde{\vec S} = \vec U_1 \cdot \vec I_1 + \vec U_2 \cdot \vec I_2 + \vec U_3 \cdot \vec I_3\]
+		Tatsächlicher Leistungsfluss:
+		\[p(t) = \operatorname{Re} \left\{ \vec S \right\} + \operatorname{Re} \left\{\tilde{\vec S} e^{j 2 \omega t} \right\}\]
+
 
 	\section{Elektrische Maschinen}
-	sind Betriebsmittel, welche Energie mittels eines Feldes wandeln. Man unterscheidet ruhende elektrische Maschinen (Trafo) und rotierende elektrische Maschinen (Generator, Motor, Umformer)
+	können als Motoren oder Generatoren benutzt werden. ($\eta > 90\%$)\\
+	Besteht aus Stator(Ständer),Rotor(Läufer), Anker und Welle.\\
+	$n:$ Drehzahl; $M:$ magn. Moment\\
+
+
 		\subsection{Der Transformator}
 		
 		\includegraphics[scale=.2]{./img/ersatzschaltbild_transformator.pdf} \\
@@ -260,7 +265,7 @@
 		$Z_W = \sqrt{\frac{\omega L'_b}{\omega C'_b}}$ \\
 		$\beta = \sqrt{\omega L'_b \omega C'_b}$ \\
 		$\vec U_1 = \vec U_2 \cos (\beta l) + j Z_W \sin (\beta l) \vec I_2$ \\
-		$\vec I_1 = \j \frac{\vec U_2}{Z_W} \sin (\beta l) + \vec I_2 \cos (\beta l)$ \\
+		$\vec I_1 = j \frac{\vec U_2}{Z_W} \sin (\beta l) + \vec I_2 \cos (\beta l)$ \\
 		$P_{nat} = \frac{U_n^2}{Z_W}$ \\
 		
 		\begin{tabular}{lcc}
@@ -272,8 +277,8 @@
 		
 		\begin{tabular}{lll}
 		& $\vec Z_l$ & $\frac{\vec Y_q}{2}$\\[0.5em] \mrule
-		el. lange Leitung & $\j Z_w \sin(\beta l)$ & $\frac{\cos(\beta l) -1}{\j Z_w \sin(\beta l)}$\\[0.5em]
-		el. kurze Leitung & $\j \omega L'_b I$ & $\frac{\j \omega C'_b l}{2}$\\[0.5em]
+		el. lange Leitung & $\i Z_w \sin(\beta l)$ & $\frac{\cos(\beta l) -1}{\i Z_w \sin(\beta l)}$\\[0.5em]
+		el. kurze Leitung & $\i \omega L'_b I$ & $\frac{\i \omega C'_b l}{2}$\\[0.5em]
 		\end{tabular}
 		
 		Bei Übertragung der natürlichen Leistung: \\
@@ -304,6 +309,14 @@
 	\\
 	Löschblechabstand von wenigen mm: $U_B = 20$V:\\
 	$n \cdot U_B > U_0$
+
+
+
+
+
+
+% Ende der Spalten
+\end{multicols}
 
 % Dokumentende
 % ======================================================================
