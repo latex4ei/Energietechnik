@@ -102,38 +102,34 @@
 		\subsection{Der Transformator}
 		
 		\includegraphics[scale=.2]{./img/ersatzschaltbild_transformator.pdf} \\
-
-		\begin{tabular}{cl}
-		ü & Übersetzung \\
-		$"u_r$ & Bemessungsübersetzung \\
-		$U_{r1T}$, $U_{r2T}$ & Bemessungsspannungen \\
-		$S_{rT}$ & Bemessungsleistung \\
-		$U_{K}$ & Kurzschlussspannung \\
-		$u_k$ & bezogene Kurzschlussspannung \\
-		$u_r$ & bezogener Wirkspannungsabfall \\
-		$P_{Cu}$ & Kupferverluste \\
-		$P_{Fe}$ & Eisenverluste \\
-		$Z_k$ & Kurzschlussimpedanz
-		\end{tabular}
-
-		Zur Berechnung wird oft $"u_r$ anstelle von $"u$ eingesetzt, da ersteres meist unbekannt ist. Die Bemessungsübersetzung findet sich aber auf dem Typenschild. \\
-		$\vec U^b = "u \vec U$ \\
-		$\vec I^b = \frac{1}{"u} \vec I$ \\
-		$\vec Z^b = "u^2 \vec Z$ \\
-		$"u = \frac{W_1}{W_2}$ \\
-		$"u_r = \frac{U_{r1T}}{U_{r2T}}$ \\
-		$u_k = \frac{U_{K}}{U_{r1T}}$ \\
-		$Z_k = \frac{U_{kT}}{\sqrt{3}\cdot I_r} = u_k \frac{U_{r1T}^2}{S_{rT}}$ \\
-		$u_r = \frac{U_{rT}}{U_{r1T}}$ \\
-		$R_k = P_{Cu} \left( \frac{U_{r1T}}{S_{rT}} \right)^2$ \\
-		$R_k = u_r \frac{U_{r1T}^2}{S_{rT}}$ \\
-		$Z_k = \sqrt{R_k^2 + X_k^2}$ \\
-		$R_{Fe} = \frac{U_{r1T}^2}{P_{Fe}}$ \\
-		$I_{W0} = \frac{P_{Fe}}{\sqrt{3} U_{r1T}}$ \\
-		$I_h = \sqrt{I_{10}^2 - I_{W0}^2}$ \\
-		$X_h = \frac{U_{r1T}}{\sqrt{3} I_h}$
-	
-	
+		\begin{symbolbox}
+			Kurzschlussspannung und Bemessungsspannung sind immer Außenleiterspannungen. Das ESB verwendet Leiter-Erd-Spannungen!
+		\end{symbolbox}
+		Transformatoren in Dreieckschaltung müssen in Sternschaltung umgewandelt werden ($X_{k*} = X_{k\Delta}/3$)\\
+		\subsubsection{Leerlauf ($I_2^x =0$)}
+		Leerlaufstrom: $I_{10} = \sqrt{I_{\ir m0}^2+I_{\ir w0}^2}$ mit $\vec I_{\ir m0} = \vec I_h=\frac{\vec U_1}{\j X_h}$\\
+		Eisenverluststrom: $I_{\ir w0} = \frac{P_0}{U_1}$ mit Leerlaufverluste: $P_0 = P_{\ir Fe}$
+		\subsubsection{Kurzschluss ($U_2^x=0$)}	
+		Kurzschlussimpedanz: $Z_k = \frac{U_k}{I_r}$\\
+		bez. Kurzschlussspannung: $u_k = \frac{U_k}{U_r} = \frac{Z_k}{Z_r} = z_k$
+		\subsubsection{Kenngrößen}
+		bezogene Kurzschlussspannung: $u_k = \frac{U_{\ir kt}}{U_{\ir rt}} = \frac{X_kI_{rt}\sqrt{3}}{U_{rt}}$\\
+		Bemessungsleistung: $S_{\ir rT} = \sqrt{3}U_{\ir rt}I_{\ir rt}$\\
+		Kurzschlussreaktanz: $X_k = \frac{u_k U_{\ir rt}^2}{S_{\ir rT}}$\\
+		Bemessungsübersetzung: $\textrm{ü}_r=\frac{U_{\ir r1T}}{U_{\ir r2T}} = \frac{U_{\ir n1}}{U_{\ir n2}}$\\
+		Übersetzung: $\textrm{ü} = \frac{W_1}{W_2}$\\
+		\\
+		Zur Berechnung wird oft $\textrm{ü}_r$ anstelle von $\textrm{ü}$ eingesetzt, da ersteres meist unbekannt ist. Die Bemessungsübersetzung findet sich aber auf dem Typenschild. \\
+		\\
+		\subsubsection{Verluste eines Drehstromtransformators}
+		Eisenverluste: $P_{\ir Fe} = p_{\ir Fe}S_r$\\
+		Kupferverluste: $P_{\ir Cu} = 3RI^2 = P_{\text{Cu r}} \frac{I_1^2}{I_{1r}^2}$
+		
+		\subsubsection{Normierte Widerstände}
+		Bemessungsimpedanz: $Z_r = \frac{U_r}{\sqrt{3}I_r}=\frac{U_r^2}{S_r}$\\
+		Kurzschlussimpedanz: $z_k = \frac{Z_k}{Z_r}=\frac{\sqrt{3}Z_kI_k}{U_r}$
+		
+		
 		\includegraphics{./img/LeitungTrafo.pdf}
 	
 		\subsection{Gleichstrommaschine}
