@@ -135,7 +135,6 @@
 		\subsection{Gleichstrommaschine}
 		
 		\begin{tabular}{cl}
-		$p$ & Polpaarzahl \\
 		$z$ & Anzahl der Schaltstufen \\
 		$\lambda$ & Schaltverhältnis \\
 		$U$ & Ankerklemmenspannung \\
@@ -148,30 +147,35 @@
 		\end{tabular}
 		
 		\subsubsection{Grundgleichungen}
-		$U_A = U_i + (R_A + R_v) I_A = U_i + RI$\\
+		$U_A = U_i + (R_A + R_v) I_A = U_i + RI_A$\\
 		$U_i = K_1 \Phi n$\\
 		$M = K_2 \Phi I_A$\\
 		$\Phi = f(I_E)$\\
 		falls verlustfrei: $K_1 = 2 \pi K_2$ \\
 		falls im linearen Bereich: $\Phi = K_3 I_E$ \\
 		
+		Wirkungsgrad: $\eta_G = \frac{P_{\ir el}}{P_{\ir mech}} = \frac{U}{U_i}$ \qquad $\eta_M = \frac{P_{\ir mech}}{P_{\ir el}} = \frac{U_i}{U}$
+		
 		\begin{center}
 		\includegraphics[scale=.2]{./img/ersatzschaltbild_gleichstrommaschine.pdf}
 		\end{center}
 		
 		\subsubsection{Anlaufen mit Vorwiderständen}
-		$R_{A_,z-1} = R_A + R_{V1}$, $R_{A_,z-1} = R_A + R_{V1} + R_{V2}$, ..., $R_{A,0} = R_A + R_{V1} + \hdots + R_{Vz}$ \\
-		$\lambda = \frac{M_{max}}{M_{min}} = \frac{R_{A,Z-1}}{R_{A,Z}}$ \\
-		$ z = \log_\lambda \frac{R_{A0}}{R_A}$
+		$R_{\ir A,0} = R_A + R_{\ir V1} + \hdots + R_{\ir Vz} = \frac{U_i}{I_{\ir max}}$\\
+		$\lambda = \frac{M_{max}}{M_{min}}$ \\
+		$ z = \log_\lambda \frac{R_{\ir A,0}}{R_A}$ (aufrunden auf ganze Zahl)\\
+		$\lambda' = \sqrt[z]{\frac{R_{\ir A,0}}{R_A}}$ und $R_{\ir A,z-1} = \lambda'\cdot R_{\ir A,z}$\\
 		
 		% Bild der Vorwiderstände
 		
+		\subsubsection{Bremsbetrieb}
+		Im Bremsbetrieb gilt: $U=0$ \quad $P_{\ir el}=P_{\ir mech} \Rightarrow K_1=2\pi K_2$
+		
 		\subsubsection{Fremderregt}
-		$n = \frac{U}{ K_1 \cdot \Phi} - \frac{R}{K_1 \cdot K_2 \cdot \phi^2}M$\\
+		Drehzahl-Moment-Kennlinie: $n = \frac{U}{ K_1 \cdot \Phi} - \frac{R_A+R_V}{K_1 \cdot K_2 \cdot \phi^2}M$\\
 
-		mit Abkürzungen: \\
-		$n_0 = \frac{U}{K_1 \Phi}$ \\
-		$M_A = \frac{U K_2 \Phi}{R}$ \\
+		Leerlaufdrehzahl (M=0): $n_0 = \frac{U}{K_1 \Phi}$ \\
+		Anlaufmoment (n=0): $M_{\ir an} = \frac{U K_2 \Phi}{R_A+R_V}$ \\
 		$n = n_0 - n_0 \frac{M}{M_A}$
 		
 		% Ersatzschaltbild
@@ -183,44 +187,64 @@
 		% Ersatzschaltbild
 		
 		\subsection{Synchronmaschine}
+		\begin{tabular}{cl}
+		$p$ & Polpaarzahl \\
+		\end{tabular}
+		\\
+		Synchrone Drehzahl: $n = \frac{60f}{p} \si{\frac{1}{min}}$
 		
 		\begin{center}
 		\includegraphics[scale=.2]{./img/ersatzschaltbild_synchronmaschine.pdf}
 		\end{center}
 		
-		Synchrone Reaktanz $X_d = \omega \cdot (L_h + L_\sigma)$\\
-		$X_d \cdot I_w = U_p \sin(\vartheta_M)$\\
+		Synchrone Reaktanz: $X_d = \omega \cdot (L_h + L_\sigma) = \frac{x_dU_{\ir rG}^2}{S_{\ir rG}}$\\
+		Bemessungsimpedanz: $x_d = \frac{\sqrt{3}X_dI_{\ir rG}}{U_{\ir rG}}$\\
+		Maschinenwinkel: $\vartheta_M = \arcsin{\left(\frac{X_dI_w}{U_p}\right)} = \arccos{\left(\frac{\Re{\vec U_p}}{\abs{\vec U_p}}\right)}$\\
 		$X_d = x_d \frac{U_r^2}{S_r}$ \\
 		\begin{tabular}{ll}
 			Übereregung & Untereregung\\ \mrule
 			SMA wirkt wie Kapazität & SMA wirkt wie Induktivität\\
 			gibt induktive Blindleistung ab & nimmt induktive Blindleistung auf\\
 		\end{tabular}
-		
-		Kippmoment $M_k$; Betrieb bei ca. $\frac{2}{3} M_k \Rightarrow \vartheta_M < 42^\circ$\\
-		
+				
 		\begin{center}
 		\includegraphics[scale=.6]{./img/synchronmaschine_betriebsbereiche.jpg}
+		%TODO evtl. Austauschen mit Bild auf S.105 Skript
 		\end{center}
 		
+		Turbinenleistung: $P_T = P + P_{\ir verlust} + P_ {\ir erreger}$		
+		
 		\subsection{Asynchronmaschine}
+		
+				Kippmoment $M_k$; Betrieb bei ca. $\frac{2}{3} M_k \Rightarrow \vartheta_M < 42^\circ$\\
+
 		
 		\begin{center}
 		\includegraphics[scale=.2]{./img/ersatzschaltbild_asynchronmaschine.pdf}
 		\end{center}
-		 
-		 $s = \frac{n_0 - n}{n_0}$ \\
-		 $M = \frac{3}{2 \pi n_0} \frac{I^2 R_l}{s}$ \\
-		 $n_0 = \frac{f}{p}$ \\
+		
+		 synchrone Drehzahl: $n_0 = \frac{f}{p}$ \\
+		 Schlupf: $s = \frac{n_0 - n}{n_0}$ ($s=0$: verlustloser Leerlauf, $s=1$: Stillstand) \\
+		 Drehzahl bei Netzfrequenz $f_1$: $n=n_1(1-s)=\frac{f_1(1-s}{p} = \frac{f_1-f_2}{p}$
+		 		 
+		 $M = \frac{P}{2\pi n} \frac{3}{2 \pi n_0} \frac{I^2 R_L}{s}$ \\
+
 		 $M = \frac{2 M_k}{\frac{s}{s_k} + \frac{s_k}{s}}$
 
 
-		Anlauf nur möglich falls $M_A < M_{an}$\\
+		
+		
+		Wirkungsgrad: $\eta = \frac{P_{\ir mech}}{P_{\ir zu}} = 1 - s$ \\
+		Kippschlupf: $s_k = \frac{R_L}{X_\sigma}$ \\
+		Kippmoment: $M_k = \frac{3}{2 \pi n_0} \frac{U^2}{2 X_\sigma}$ (Kloss'sche Gleichung)\\
+		Anlaufmoment: $M_{\ir an} = M(s=1) = \frac{2M_k\cdot s_k}{1+s_k^2}$\\
+		
+		\subsubsection{Kopplung mit Arbeitsmaschine}
+		Anlauf nur möglich falls $M_A < M_{\ir an}$\\
 		$U$ kann nicht beliebig erhöht werden $\Ra$ Fluss wird kleiner $\Ra$ Moment wird kleiner.\\
 		
-		$\eta = 1 - s$ \\
-		$s_k = \frac{R_L}{X_\sigma}$ \\
-		$M_k = \frac{3}{2 \pi n_0} \frac{U^2}{2 X_\sigma}$
+		$M'_{\ir an} = M_A+M_B$
+		
 		
 		
 	\section{Elektrische Energieübertragung}
