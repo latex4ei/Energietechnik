@@ -1,6 +1,6 @@
-Energietechnik.pdf
-
 build/
+
+/*.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -111,3 +111,6 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+git.id
+*.DS_Store
+*.pyc
