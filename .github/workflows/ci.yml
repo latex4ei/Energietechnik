@@ -55,6 +55,7 @@ jobs:
 
       # Run latexdiff on each document.
       - name: Run latexdiff on documents
+        continue-on-error: true
         run: |
           # Install latexdiff if not present
           apt-get install -y latexdiff
